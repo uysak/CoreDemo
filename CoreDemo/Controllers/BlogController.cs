@@ -17,6 +17,7 @@ namespace Blog.Controllers
         }
         public IActionResult BlogReadAll(int id)
         {
+            ViewBag.currentBlogId = id;
             var blog = _blogService.GetById(id);
             return View(blog);
         }

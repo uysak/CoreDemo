@@ -1,9 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BusinessLayer.Abstract;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Blog.Controllers
 {
 	public class CommentController : Controller
 	{
+		private ICommentService _commentService;
+
+		public CommentController(ICommentService commentService)
+		{
+			_commentService = commentService;
+		}
+
 		public IActionResult Index()
 		{
 			return View();
@@ -12,9 +20,10 @@ namespace Blog.Controllers
 		{
 			return PartialView();
 		}
-		public PartialViewResult CommentListByBlog()
+		public PartialViewResult CommentListByBlog(int id)
 		{
-			return PartialView();
+			var comments = _commentService.GetCommentsByBlogId(id);
+            return PartialView(comments);
 		}
 	}
 }

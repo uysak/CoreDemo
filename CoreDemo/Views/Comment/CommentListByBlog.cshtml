@@ -1,15 +1,19 @@
-﻿<div class="comment-top">
-	<h4>Comments</h4>
+﻿@using EntityLayer.Concrete
+@model List<Comment>
+<div class="comment-top">
 	<div class="media">
-		<img src="/images/t1.jpg" alt="" class="img-fluid" />
-		<div class="media-body">
-			<h5 class="mt-0">Joseph Goh</h5>
-			<p>
-				Lorem Ipsum convallis diam consequat magna vulputate malesuada. id dignissim sapien velit id felis ac cursus eros.
-				Cras a ornare elit.
-			</p>
+		
+		@foreach(var item in Model){
+			<img src="/images/t1.jpg" alt="" class="img-fluid" />
+			<div class="media-body">
+				<h5 class="mt-0">@item.CommentUserName?</h5>
+				<p>
+					@item.CommentContent?
+				</p>
+			</div>
+		}
 
-			<div class="media mt-3">
+			@*<div class="media mt-3">
 				<a class="d-flex pr-3" href="#">
 					<img src="/images/t2.jpg" alt="" class="img-fluid" />
 				</a>
@@ -20,7 +24,6 @@
 						Cras a ornare elit.
 					</p>
 				</div>
-			</div>
-		</div>
+			</div>*@
 	</div>
 </div>

@@ -16,10 +16,14 @@ namespace BusinessLayer.DependencyResolvers.Autofac
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<CategoryRepository>().As<ICategoryDal>().SingleInstance();
+            builder.RegisterType<EfCategoryRepository>().As<ICategoryDal>().SingleInstance();
             builder.RegisterType<CategoryManager>().As<ICategoryService>().SingleInstance();
-            builder.RegisterType<BlogManager>().As<IBlogService>().SingleInstance();
+
             builder.RegisterType<EfBlogRepository>().As<IBlogDal>().SingleInstance();
+            builder.RegisterType<BlogManager>().As<IBlogService>().SingleInstance();
+
+            builder.RegisterType<EfCommentRepository>().As<ICommentDal>().SingleInstance();
+            builder.RegisterType<CommentManager>().As<ICommentService>().SingleInstance();
         }
     }
 }
