@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using EntityLayer.Abstract;
+using System.Linq.Expressions;
 
 namespace DataAccessLayer.EntityFramework
 {
@@ -32,20 +33,20 @@ namespace DataAccessLayer.EntityFramework
             }
         }
 
-        public T GetById(int id)
+        public T Get(Expression<Func<T, bool>> filter)
         {
             using (var dbContext = new BlogContext())
             {
-                var entity = dbContext.Set<T>().Find(id);
+                var entity = dbContext.Set<T>().FirstOrDefault(filter);
                 return entity;
             }
         }
 
-        public List<T> GetListAll()
+        public List<T> GetList(Expression<Func<T,bool>> filter)
         {
             using (var dbContext = new BlogContext())
             {
-                return dbContext.Set<T>().ToList();
+                return filter == null ? dbContext.Set<T>().ToList() : dbContext.Set<T>().Where(filter).ToList();
             }
         }
 

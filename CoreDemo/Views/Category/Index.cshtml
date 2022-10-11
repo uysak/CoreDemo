@@ -1,0 +1,27 @@
+﻿@using EntityLayer.Concrete
+@model List<Category>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>CategoryName</th>
+        <th>Status</th>
+        <th>Details</th>
+        <th>Delete</th>
+    </tr>
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>@item.CategoryId</td>
+            <td>@item.CategoryName</td>
+            <td>@item.CategoryStatus</td>
+            <td> <a href="#" class="btn btn-warning">Get Details</a></td>
+            <td> <a href="#" class="btn btn-danger">Delete</a></td>
+        </tr>
+    }
+</table>

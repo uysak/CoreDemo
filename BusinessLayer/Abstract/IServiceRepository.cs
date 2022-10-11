@@ -12,7 +12,7 @@ namespace BusinessLayer.Abstract
         void Add(TEntity entity);
         void Delete(TEntity entity);
         void Update(TEntity entity);
-        List<TEntity> GetListAll();
+        List<TEntity> GetList();
         TEntity GetById(int id);
 
     }
